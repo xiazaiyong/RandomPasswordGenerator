@@ -1,4 +1,4 @@
-class PasswordStength:
+class PasswordStrength:
     #密码强度评估
 
     WEAK = 1

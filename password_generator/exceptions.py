@@ -8,8 +8,11 @@ class InvalidLengthError(PasswordGeneratorError):
         self.length = length
         self.min_len = min_len
         self.max_len = max_len
-        message = f"密码长度{length}无效，允许的范围：{min_len} - {max_len}"
-        super.__init__(message)
+        self.message = f"密码长度{length}无效，允许的范围：{min_len} - {max_len}"
+        super().__init__(self.message)
+    
+    def __str__(self):
+        return f"[长度错误] {self.message}"
 
 class NoCharacterSetError(PasswordGeneratorError):
     """未启用任何字符集"""

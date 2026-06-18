@@ -5,7 +5,7 @@ from .exceptions import *
 class RandomPasswordGenerator:
     # 随机密码生成类
     
-    DEFAUT_LENGTH = 12
+    DEFAULT_LENGTH = 12
     MAX_LENGTH = 128
     MIN_LENGTH = 4
 
@@ -33,7 +33,7 @@ class RandomPasswordGenerator:
         '''
 
         if length is None:
-            length = self.DEFAUT_LENGTH
+            length = self.DEFAULT_LENGTH
 
         if length > 4:
             self.use_readability = True
@@ -42,8 +42,8 @@ class RandomPasswordGenerator:
             raise InvalidLengthError(length, self.MIN_LENGTH, self.MAX_LENGTH)
 
         #构建密码池
-        chars_pool = list()
-        password_bit = self.DEFAUT_LENGTH
+        chars_pool = ''
+        password_bit = length
         if self.lower_case:
             chars_pool += string.ascii_lowercase
         if self.upper_case:
