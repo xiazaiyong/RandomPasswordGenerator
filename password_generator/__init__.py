@@ -6,17 +6,17 @@
 默认复杂度：大小写+数字
 """
 from .generator import RandomPasswordGenerator
-from .validator import PasswordStrength
+from .validator import PasswordStength
 from .exceptions import (
     PasswordGeneratorError,
     InvalidLengthError,
     NoCharacterSetError
 )
 
-__version__ = '0.1.0'
+__version__ = '0.1.2'
 __all__ = [
     'RandomPasswordGenerator',
-    'PasswordStrength',
+    'PasswordStength',
     'PasswordGeneratorError'
     'InvalidLengthError',
     'NoCharacterSetError'

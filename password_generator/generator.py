@@ -1,11 +1,11 @@
-import random
+import secrets
 import string
 from .exceptions import *
 
 class RandomPasswordGenerator:
     # 随机密码生成类
     
-    DEFAULT_LENGTH = 12
+    DEFAUT_LENGTH = 12
     MAX_LENGTH = 128
     MIN_LENGTH = 4
 
@@ -13,6 +13,7 @@ class RandomPasswordGenerator:
         随机密码长度：默认12位
         默认包含大写、小写和数字
         默认不包含符号
+        默认使用‘-’符号增加可读性
     """
 
     def __init__(self):
@@ -20,7 +21,7 @@ class RandomPasswordGenerator:
         self.upper_case = True  #小写
         self.use_digits = True  #数字
         self.use_symbols = False    #符号
-        self.use_readability = False     #可读性，每四个字符之间使用‘-’连接
+        self.use_readability = True     #可读性，每四个字符之间使用‘-’连接
 
     def generate(self, length = None):
         '''
@@ -33,17 +34,17 @@ class RandomPasswordGenerator:
         '''
 
         if length is None:
-            length = self.DEFAULT_LENGTH
+            length = self.DEFAUT_LENGTH
 
-        if length > 4:
-            self.use_readability = True
+        # if length > 4:
+        #     self.use_readability = True
 
         if not self.MIN_LENGTH <= length <= self.MAX_LENGTH:
             raise InvalidLengthError(length, self.MIN_LENGTH, self.MAX_LENGTH)
 
         #构建密码池
-        chars_pool = ''
-        password_bit = length
+        chars_pool = list()
+        password_bit = self.DEFAUT_LENGTH
         if self.lower_case:
             chars_pool += string.ascii_lowercase
         if self.upper_case:
@@ -60,9 +61,9 @@ class RandomPasswordGenerator:
 
         password_chars = []
         for i in range(password_bit):
-            if i!=0 and i%4==0:
+            if i!=0 and i%4==0 and self.use_readability:
                 password_chars.append('-')
-            password_chars.append(random.choice(chars_pool))
+            password_chars.append(secrets.choice(chars_pool))
             
         return ''.join(password_chars)
 
