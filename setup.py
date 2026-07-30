@@ -5,9 +5,9 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="password-generator",      
-    version="0.1.0",                     
+    version="0.1.2",                     
     author="xiazaiyong",
-    author_email="your@email.com",
+    author_email="xiazaiyong@github.com",
     description="一个随机密码生成器",
     long_description=long_description,
     long_description_content_type="text/markdown",
